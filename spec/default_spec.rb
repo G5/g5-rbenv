@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'g5_rbenv::default' do
+describe 'g5-rbenv::default' do
   let(:chef_run) do
     ChefSpec::Runner.new.converge(described_recipe)
   end

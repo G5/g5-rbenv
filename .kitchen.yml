@@ -1,7 +1,7 @@
 ---
 driver:
   name: vagrant
-  box: g5_rbenv
+  box: g5-rbenv
   box_url: http://files.vagrantup.com/precise64.box
   customize:
     memory: 2048
@@ -15,5 +15,5 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[g5_rbenv::default]
+      - recipe[g5-rbenv::default]
     attributes: {}
