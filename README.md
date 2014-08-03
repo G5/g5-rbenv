@@ -18,7 +18,26 @@ with the defaults for a G5 development environment.
 Add a dependency on g5-rbenv to your cookbook's metadata.rb:
 
 ```ruby
-depends 'rbenv'
+depends 'g5-rbenv'
+```
+
+The cookbook is currently only available via git. We recommend
+using [Berkshelf](http://berkshelf.com) to manage the installation.
+
+To initialize Berkshelf in your project, if you haven't done so
+already:
+
+```console
+cd my-chef-cookbook
+gem install berkshelf
+berks init
+```
+
+To reference the git version, simply add the following line to your
+`Berksfile`:
+
+```ruby
+cookbook 'g5-rbenv', git: 'git@github.com:G5/g5-rbenv.git', tag: '0.0.1'
 ```
 
 ## Usage ##
