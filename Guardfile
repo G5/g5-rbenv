@@ -10,10 +10,10 @@ guard 'foodcritic', cookbook_paths: '.' do
   watch('metadata.rb')
 end
 
-guard :rspec, cmd: 'bundle exec rspec --colour' do
-  watch(%r{^spec/(.+)_spec\.rb$})
-  watch(%r{^(recipes)/(.+)\.rb$})   { |m| "spec/#{m[1]}_spec.rb" }
-  watch('spec/spec_helper.rb')      { 'spec' }
+guard :rspec, cmd: 'bundle exec rspec' do
+  watch(%r{^test/unit/(.+)_spec\.rb$})
+  watch(%r{^(recipes)/(.+)\.rb$})     { |m| "test/unit/#{m[0]}/#{m[1]}_spec.rb" }
+  watch('test/unit/spec_helper.rb') { 'spec' }
   watch(%r{^libraries/.+\.rb$})     { 'spec' }
 end
 
