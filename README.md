@@ -28,9 +28,9 @@ To initialize Berkshelf in your project, if you haven't done so
 already:
 
 ```console
-cd my-chef-cookbook
-gem install berkshelf
-berks init
+$ cd my-chef-cookbook
+$ gem install berkshelf
+$ berks init
 ```
 
 To reference the git version, simply add the following line to your
