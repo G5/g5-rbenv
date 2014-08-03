@@ -32,4 +32,11 @@ describe 'g5-rbenv::default' do
   it 'adds vagrant to the rbenv group' do
     expect(chef_run).to create_group('rbenv').with(members: ['vagrant'])
   end
+
+  it 'uses the overridden template for rbenv.sh' do
+    expect(chef_run).to create_template('/etc/profile.d/rbenv.sh').with(
+      source: 'rbenv.sh.erb',
+      cookbook: 'g5-rbenv'
+    )
+  end
 end

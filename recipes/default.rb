@@ -1,6 +1,15 @@
 include_recipe "rbenv::default"
 include_recipe "rbenv::ruby_build"
 
+# Override /etc/profile.d/rbenv.sh
+begin
+  rbenv_template = resources(template: "/etc/profile.d/rbenv.sh")
+  rbenv_template.source "rbenv.sh.erb"
+  rbenv_template.cookbook "g5-rbenv"
+rescue Chef::Exceptions::ResourceNotFound
+  Chef::Log.warn "could not find template /etc/profile.d/rbenv.sh to modify"
+end
+
 # Install a global ruby and bundler
 rbenv_ruby node[:rbenv][:ruby_version] do
   global true

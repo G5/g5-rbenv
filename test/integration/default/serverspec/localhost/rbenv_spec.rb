@@ -58,7 +58,7 @@ describe 'rbenv' do
   describe 'PATH env var' do
     subject(:path) { command("#{pre_command} -c printenv") }
 
-    xit 'should favor local project binstubs over rbenv shims' do
+    it 'should favor local project binstubs over rbenv shims' do
       expect(path).to return_stdout(/PATH=bin\:.*\/opt\/rbenv\/shims/)
     end
   end
