@@ -11,12 +11,12 @@ rescue Chef::Exceptions::ResourceNotFound
 end
 
 # Install a global ruby and bundler
-rbenv_ruby node[:rbenv][:ruby_version] do
+rbenv_ruby node['rbenv']['ruby_version'] do
   global true
 end
 
 rbenv_gem "bundler" do
-  ruby_version node[:rbenv][:ruby_version]
+  ruby_version node['rbenv']['ruby_version']
 end
 
 # Should probably fix the apparently busted rbenv recipe.
