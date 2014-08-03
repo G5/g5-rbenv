@@ -11,12 +11,76 @@ with the defaults for a G5 development environment.
 
 * [Chef](http://www.getchef.com) >= 10
 * [Vagrant](http://www.vagrantup.com) >= 1.5
+* [Ruby](http://www.ruby-lang.org) >= 1.9
 
 ## Installation ##
 
+Add a dependency on g5-rbenv to your cookbook's metadata.rb:
+
+```ruby
+depends 'rbenv'
+```
+
 ## Usage ##
 
+### Attributes ###
+
+* `node['rbenv']['ruby_version']` - ruby version to install as global default
+
+See the wrapped [rbenv cookbook](https://github.com/RiotGames/rbenv-cookbook#attributes)
+for more attributes.
+
+### Recipes ###
+
+#### default ####
+
+Installs rbenv, ruby_build, a default ruby, and bundler in a system-wide installation
+accessible by users in the `rbenv` group (including the `vagrant` user).
+
+### Resources / Providers ###
+
+See the wrapped [rbenv cookbook](https://github.com/RiotGames/rbenv-cookbook#resources--providers)
+for resources such as `rbenv_ruby`, `rbenv_gem`, and `rbenv_execute`.
+
 ## Examples ##
+
+### Default installation ###
+
+To install rbenv, include the default recipe in one of your cookbook's
+recipes:
+
+```ruby
+include_recipe 'g5-rbenv::default'
+```
+
+### Changing the global ruby version ###
+
+Override the `ruby_version` attribute:
+
+```ruby
+node.set['rbenv']['ruby_version'] = '1.9.3'
+```
+
+### Installing additional rubies ###
+
+Use the `rbenv_ruby` resource to install other rubies in addition
+to the default ruby:
+
+```ruby
+rbenv_ruby '2.0.0'
+rbenv_ruby '1.9.3'
+```
+
+### Installing additional gems ###
+
+Use the `rbenv_gem` resource to install gems for rbenv-managed
+rubies:
+
+```ruby
+rbenv_gem 'rake' do
+  ruby_version '2.1.2'
+end
+```
 
 ## Authors ##
 
@@ -25,7 +89,7 @@ with the defaults for a G5 development environment.
 ## Contributions ##
 
 1. Fork it
-2. Set up your [development environment](#development)
+2. Set up your [development environment](#development-setup)
 3. Create your feature branch (`git checkout -b my-new-feature`)
 4. Write your code and **specs**
 5. Commit your changes (`git commit -am 'Add some feature'`)
@@ -35,9 +99,66 @@ with the defaults for a G5 development environment.
 If you find bugs, have feature requests or questions, please
 [file an issue](https://github.com/G5/g5-rbenv/issues).
 
-### Development ###
+### Development Setup ###
+
+1. Clone the repository locally:
+
+  ```console
+  $ git clone git@github.com:G5/g5-rbenv.git
+  $ cd g5-rbenv
+  ```
+
+2. Install required gems using [Bundler](http://bundler.io):
+
+  ```console
+  $ bundle install
+  ```
+
+3. Install required cookbooks using [Berkshelf](http://berkshelf.com/):
+
+  ```console
+  $ bundle exec berks install
+  ```
+
+4. Provision an instance for testing using [test-kitchen](http://kitchen.ci):
+
+  ```console
+  $ bundle exec kitchen converge
+  ```
+
+  See `bundle exec kitchen help` for more test-kitchen commands.
 
 ### Specs ###
+
+The unit tests use [ChefSpec](http://sethvargo.github.io/chefspec/),
+and live in the `test/unit` directory. To execute the entire
+suite:
+
+```console
+$ bundle exec rspec
+```
+
+To run the [foodcritic](http://acrmp.github.io/foodcritic) linting tool:
+
+```console
+$ bundle exec foodcritic .
+```
+
+The integration tests use [ServerSpec](http://serverspec.org), and live
+in the `test/integration/default/serverspec` directory. To execute
+the test suite:
+
+```console
+$ bundle exec kitchen verify
+```
+
+If you would prefer to automatically monitor the filesystem for changes
+to execute tests, [Guard](https://github.com/guard/guard) has been
+configured:
+
+```console
+$ bundle exec guard start
+```
 
 ## License ##
 
