@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'g5-rbenv::default' do
   let(:chef_run) do
-    ChefSpec::Runner.new do |node|
+    ChefSpec::SoloRunner.new do |node|
       node.set['rbenv']['ruby_version'] = ruby_version
     end.converge(described_recipe)
   end
