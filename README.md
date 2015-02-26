@@ -49,7 +49,7 @@ To reference the git version of this cookbook, simply add the following line
 to your `Berksfile`:
 
 ```ruby
-cookbook 'g5-rbenv', git: 'git@github.com:G5/g5-rbenv.git', tag: '0.1.0'
+cookbook 'g5-rbenv', git: 'git@github.com:G5/g5-rbenv.git', tag: 'v0.2.0'
 ```
 
 ## Usage ##
