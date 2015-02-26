@@ -9,6 +9,14 @@ describe 'g5-rbenv::default' do
 
   let(:ruby_version) { '1.9.3' }
 
+  it 'installs the libffi-dev package' do
+    expect(chef_run).to install_package('libffi-dev')
+  end
+
+  it 'installs the libgdbm-dev package' do
+    expect(chef_run).to install_package('libgdbm-dev')
+  end
+
   it 'includes the rbenv default recipe' do
     expect(chef_run).to include_recipe('rbenv::default')
   end
