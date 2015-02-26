@@ -6,4 +6,4 @@ license 'MIT'
 
 replaces 'vagrant_rbenv'
 
-depends 'rbenv', '1.6.5'
+depends 'rbenv', '1.7.1'
