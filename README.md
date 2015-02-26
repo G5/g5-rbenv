@@ -15,7 +15,7 @@ with the defaults for a G5 development environment.
 
 ## Installation ##
 
-## New cookbook ##
+### New cookbook ###
 
 We recommend using [ChefDK generators](https://docs.chef.io/ctl_chef.html)
 to generate your new cookbook:
@@ -24,7 +24,7 @@ to generate your new cookbook:
 $ chef generate cookbook my-cookbook
 ```
 
-## Existing cookbook ##
+### Existing cookbook ###
 
 The cookbook is currently only available via git. We recommend
 using [Berkshelf](http://berkshelf.com) to manage the installation.
@@ -37,7 +37,7 @@ $ cd my-chef-cookbook
 $ chef exec berks init
 ```
 
-## New and existing cookbooks ##
+### All cookbooks ###
 
 Add a dependency on g5-rbenv to your cookbook's metadata.rb:
 
