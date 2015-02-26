@@ -13,10 +13,10 @@ end
 # Install packages required for ruby-build to build MRI 2.2.0
 # according to:
 # https://github.com/sstephenson/ruby-build/wiki#suggested-build-environment
-case node['platform']
-when 'redhat', 'centos', 'amazon', 'oracle'
+case node['platform_family']
+when 'rhel'
   package 'libffi-devel'
-when 'ubuntu', 'debian'
+when 'debian'
   package 'libffi-dev'
   package 'libgdbm-dev'
 end
