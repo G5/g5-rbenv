@@ -10,6 +10,17 @@ rescue Chef::Exceptions::ResourceNotFound
   Chef::Log.warn "could not find template /etc/profile.d/rbenv.sh to modify"
 end
 
+# Install packages required for ruby-build to build MRI 2.2.0
+# according to:
+# https://github.com/sstephenson/ruby-build/wiki#suggested-build-environment
+case node['platform']
+when 'redhat', 'centos', 'amazon', 'oracle'
+  package 'libffi-devel'
+when 'ubuntu', 'debian'
+  package 'libffi-dev'
+  package 'libgdbm-dev'
+end
+
 # Install a global ruby and bundler
 rbenv_ruby node['rbenv']['ruby_version'] do
   global true
