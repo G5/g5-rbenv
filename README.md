@@ -5,7 +5,7 @@ with the defaults for a G5 development environment.
 
 ## Current version ##
 
-0.1.0
+0.2.0
 
 ## Requirements ##
 
